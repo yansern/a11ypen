@@ -132,7 +132,9 @@
               Auto-run
             </el-checkbox>
           </el-dropdown-item>
+          <el-dropdown-item command="about">
             <div class="fake-anchor">
+              <info-icon /> About
             </div>
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -147,6 +149,20 @@
         <img height="30" src="/favicon-180.png" alt="codepan">
       </a>
     </div>
+    <el-dialog
+      :visible.sync="showAboutDialog"
+      class="about-dialog"
+      width="500px">
+      <template slot="title">
+        <img class="a11ypen-logo xxl" src="/a11ypen-logo.png" title="a11ypen logo" />
+      </template>
+      <p>A11yPen is an online code playground with accessibility testing for web developers who want to quickly tinker with web accessibility &amp; share their results with others.</p>
+      <p>A11yPen is created &amp; maintained by <a href="https://twitter.com/yansernio" target="_blank">Yan Sern</a> as an alternative to CodePen &amp; JSBin with added accessibility testing features.</p>
+      <p><strong>Credits</strong><br/>This project is built on top of <a target="_blank" href="https://github.com/egoist/codepan">CodePan</a> by <a target="_blank" href="https://egoist.sh/">EGOIST</a> for its code tinkering features and uses the <a target="_blank" href="https://github.com/dequelabs/axe-core">Axe Core</a> by <a target="_blank" href="https://www.deque.com/">Deque Labs</a> for its accessibility testing features.</p>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="showAboutDialog = false">OK</el-button>
+      </span>
+    </el-dialog>
   </header>
 </template>
 
@@ -172,7 +188,8 @@
         version: process.env.VERSION,
         latestCommit: process.env.LATEST_COMMIT,
         inIframe,
-        url: window.location.href
+        url: window.location.href,
+        showAboutDialog: false
       }
     },
     computed: {
@@ -243,6 +260,8 @@
       handleDropdownCommand(command) {
         if (command === 'save-new-gist') {
           Event.$emit('save-gist', true)
+        } else if (command === 'about') {
+          this.showAboutDialog = true
         }
       }
     },
@@ -254,6 +273,7 @@
       'el-input': Input,
       'el-badge': Badge,
       'el-checkbox': Checkbox,
+      'el-dialog': Dialog,
       Link2Icon,
       SaveIcon,
       TwitterIcon,
@@ -273,6 +293,20 @@
   align-items: center
   padding: 0 10px
   justify-content: space-between
+
+
+.about-dialog
+  >>> .el-dialog__header
+    padding-bottom: 0;
+  >>> .el-dialog__body
+    padding: 0 20px !important
+    word-break: normal
+    a
+      font-weight: bold;
+      color: #409EFF;
+  >>> .el-dialog__footer
+    padding-top: 0;
+
 
 .home-header-block
   flex: 1
