@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import progress from 'nprogress'
+import req from 'reqjs'
 import {
   loadBabel,
   loadPug,
@@ -14,8 +16,6 @@ import {
   loadTypescript,
   loadStylus
 } from '@/utils/transformer'
-import progress from 'nprogress'
-import req from 'reqjs'
 import Event from '@/utils/event'
 
 Vue.use(Vuex)

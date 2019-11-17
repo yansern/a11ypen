@@ -134,8 +134,6 @@ export default {
     Event.$on('show-compiled-code', type => {
       this.showCompiledCode[type] = true
     })
-
-    this.getCodeFund()
   },
   methods: {
     ...mapActions(['setBoilerplate', 'setGist', 'showPans', 'setAutoRun']),

@@ -17,15 +17,14 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
-import { getHumanlizedTransformerName } from '@/utils'
-import axios from 'axios'
 import notie from 'notie'
+import SvgIcon from './SvgIcon.vue'
+import { getHumanlizedTransformerName, hasNextPan } from '@/utils'
 import * as transform from '@/utils/transform'
 import createIframe from '@/utils/iframe'
 import Event from '@/utils/event'
 import panPosition from '@/utils/pan-position'
 import getScripts from '@/utils/get-scripts'
-import SvgIcon from './SvgIcon.vue'
 import PanResizer from '@/components/PanResizer.vue'
 
 const sandboxAttributes = [
