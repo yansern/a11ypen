@@ -42,6 +42,23 @@ const emptyPans = () => ({
   }
 })
 
+const examplePans = () => ({
+  "activePan": "html",
+  "css": {
+      "code": "html {\n  font-family: sans-serif;\n}\n\nh6:before {\n  content: 'Hello World!';\n}\n\n.low-contrast {\n  background: #ccc;\n  color: #fff;\n}",
+      "transformer": "css"
+  },
+  "html": {
+      "code": "<h2>Headings</h2>\n<h6><span></span></h6>\n\n<hr />\n\n<h2>Form Labels</h2>\n<form>\n  <div>\n    <input type=\"checkbox\" value=\"apple\"/>\n    <label>Apple</label>\n  </div>\n  <div>\n    <input type=\"checkbox\" value=\"orange\" title=\"Orange\"/>\n    <label>Orange</label>\n  </div>\n</form>\n\n<hr />\n\n<h2>Image &amp; Link</h2>\n<a href=\"#\"><img src=\"/a11ypen-logo.png\" width=\"100\"></a>\n\n<hr />\n\n<h2>Contrast</h2>\n<p class=\"low-contrast\">This text has low contrast ratio.</p>\n",
+      "transformer": "html"
+  },
+  "js": {
+      "code": "",
+      "transformer": "js"
+  },
+  "showPans": ["html", "css", "output", "a11y"]
+});
+
 const getFileNameByLang = {
   html: 'index.html',
   js: 'script.js',
@@ -52,6 +69,10 @@ const getFileNameByLang = {
 const boilerplates = {
   empty: async () => ({
     ...emptyPans(),
+    showPans: ['html', 'css', 'output', 'a11y']
+  }),
+  example: async() => ({
+    ...examplePans(),
     showPans: ['html', 'css', 'output', 'a11y']
   })
 }
@@ -224,6 +245,7 @@ const store = new Vuex.Store({
         const snippetsRef = db.collection('snippets')
         const doc = await snippetsRef.doc(id).get()
         const main = doc.data()
+        setTimeout(() => { console.log(JSON.stringify(main)) }, 250);
         await dispatch('setBoilerplate', main)
       } catch (e) {
         alert('Error loading snippet!')

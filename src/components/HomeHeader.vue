@@ -13,6 +13,7 @@
         </el-button>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="empty">Empty</el-dropdown-item>
+          <el-dropdown-item command="example">Example</el-dropdown-item>
           <el-dropdown-item command="vue">Vue</el-dropdown-item>
           <el-dropdown-item command="vue-jsx">Vue JSX</el-dropdown-item>
           <el-dropdown-item command="react">React</el-dropdown-item>
