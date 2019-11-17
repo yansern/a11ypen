@@ -49,22 +49,6 @@ const createElement = tag => (content = '', attrs = {}) => {
   )
 }
 
-const makeGist = (data, { showPans, activePan }) => {
-  const files = {}
-
-  const manifest = {
-    ...data,
-    showPans,
-    activePan
-  }
-
-  files['codepan.json'] = {
-    content: JSON.stringify(manifest)
-  }
-
-  return files
-}
-
 export default {
   name: 'output-pan',
   data() {
@@ -115,7 +99,7 @@ export default {
       }
     })
     Event.$on('save-gist', saveNew => {
-      this.saveGist({ token: this.githubToken, saveNew })
+      this.save({ saveNew })
     })
   },
   beforeDestroy() {
@@ -232,64 +216,32 @@ export default {
       })
     },
 
-    /**
-     * Save gist
-     * When you are not logged in (no github token) it saves as guest gist
-     * Otherwise it creates or updates gist
-     */
-    async saveGist({ token, saveNew } = {}) {
+    async save({ saveNew } = {}) {
       this.editorSaving()
       try {
-        const files = makeGist(
-          {
-            js: this.js,
-            css: this.css,
-            html: this.html
-          },
-          {
-            showPans: this.visiblePans,
-            activePan: this.activePan
-          }
-        )
-        const params = {}
-        if (token) {
-          // eslint-disable-next-line camelcase
-          params.access_token = token
+        const shouldUpdateGist = false
+        // const shouldUpdateGist = this.canUpdateGist && !saveNew
+
+        const db = window.firebase.firestore()
+        const snippetsRef = db.collection('snippets')
+        const snippetData = {
+          js: this.js,
+          css: this.css,
+          html: this.html,
+          showPans: this.visiblePans,
+          activePan: this.activePan
         }
-        const shouldUpdateGist = this.canUpdateGist && !saveNew
-        const url = `https://api.github.com/gists${
-          shouldUpdateGist ?
-          `/${this.$route.params.gist}` :
-          ''
-        }`
-        const method = shouldUpdateGist ? 'PATCH' : 'POST'
-        const { data } = await axios(url, {
-          params,
-          method,
-          data: {
-            public: false,
-            files
-          }
-        })
+
+        const snippetRef = await snippetsRef.add(snippetData)
+        const snippetId = snippetRef.id
 
         if (shouldUpdateGist) {
           this.editorSaved()
         } else {
-          this.$router.push(`/gist/${data.id}`)
-          if (token) {
-            // Update gist id in the description of newly created gist
-            axios(`https://api.github.com/gists/${data.id}`, {
-              method: 'PATCH',
-              params,
-              data: {
-                description: `Try it online! https://codepan.net/gist/${
-                  data.id
-                }`
-              }
-            }).catch(err => console.log(err))
-          }
+          this.$router.push(`/s/${snippetRef.id}`)
         }
       } catch (err) {
+        throw err
         this.editorSavingError()
         if (err.response) {
           notie.alert({

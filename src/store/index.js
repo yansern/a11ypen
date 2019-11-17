@@ -219,46 +219,15 @@ const store = new Vuex.Store({
       progress.done()
     },
     async setGist({ commit, dispatch, state }, id) {
-      const data = await api(`gists/${id}`, state.githubToken, progress.done)
-      const files = data.files
-
-      if (!files) return
-
-      const main = {
-        html: {},
-        css: {},
-        js: {},
-        ...(files['index.js'] ? req(files['index.js'].content) : {}),
-        ...(files['codepan.js'] ? req(files['codepan.js'].content) : {}),
-        ...(files['codepan.json'] ? JSON.parse(files['codepan.json'].content) : {})
-      }
-      for (const type of ['html', 'js', 'css']) {
-        if (!main[type].code) {
-          const filename = main[type].filename || getFileNameByLang[type]
-          if (files[filename]) {
-            main[type].code = files[filename].content
-          }
-        }
-      }
-      await dispatch('setBoilerplate', main)
-
-      delete data.files
-      commit('SET_GIST_META', data)
-    },
-    async setGitHubToken({ commit, dispatch }, token) {
-      commit('SET_GITHUB_TOKEN', token)
-      let userMeta = {}
-      if (token) {
-        localStorage.setItem('codepan:gh-token', token)
-        userMeta = await api('user', token)
-      } else {
-        localStorage.removeItem('codepan:gh-token')
-      }
-      commit('SET_USER_META', userMeta)
-      if (Object.keys(userMeta).length > 0) {
-        localStorage.setItem('codepan:user-meta', JSON.stringify(userMeta))
-      } else {
-        localStorage.removeItem('codepan:user-meta')
+      try {
+        const db = window.firebase.firestore()
+        const snippetsRef = db.collection('snippets')
+        const doc = await snippetsRef.doc(id).get()
+        const main = doc.data()
+        await dispatch('setBoilerplate', main)
+      } catch (e) {
+        alert('Error loading snippet!')
+        throw e
       }
     },
     editorSaved({ commit }) {

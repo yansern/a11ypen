@@ -18,7 +18,7 @@ const router = new Router({
     },
     {
       name: 'gist',
-      path: '/gist/:gist',
+      path: '/s/:gist',
       component: EditorPage
     },
     {
