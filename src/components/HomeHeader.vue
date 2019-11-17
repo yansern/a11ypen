@@ -161,6 +161,7 @@
       <p>A11yPen is an online code playground with accessibility testing for web developers who want to quickly tinker with web accessibility &amp; share their results with others.</p>
       <p>A11yPen is created &amp; maintained by <a href="https://twitter.com/yansernio" target="_blank">Yan Sern</a> as an alternative to CodePen &amp; JSBin with added accessibility testing features.</p>
       <p><strong>Credits</strong><br/>This project is built on top of <a target="_blank" href="https://github.com/egoist/codepan">CodePan</a> by <a target="_blank" href="https://egoist.sh/">EGOIST</a> for its code tinkering features and uses the <a target="_blank" href="https://github.com/dequelabs/axe-core">Axe Core</a> by <a target="_blank" href="https://www.deque.com/">Deque Labs</a> for its accessibility testing features.</p>
+      <p><small>{{version}}</small></p>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="showAboutDialog = false">OK</el-button>
       </span>
