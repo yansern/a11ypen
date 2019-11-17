@@ -122,7 +122,7 @@ export default {
   mounted() {
     // Tell the parent window we're ready!
     if (inIframe) {
-      window.parent.postMessage({ type: 'codepan-ready' }, '*')
+      window.parent.postMessage({ type: 'a11ypan-ready' }, '*')
     }
 
     window.addEventListener('storage', this.handleStorageChanged)

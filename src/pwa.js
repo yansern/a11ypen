@@ -9,7 +9,7 @@ runtime.install({
     console.info('Reload this page to apply updates!')
     // eslint-disable-next-line new-cap
     Notification({
-      title: 'CodePan has been updated!',
+      title: 'A11yPen has been updated!',
       message: 'Tap this or refresh page to apply updates.',
       duration: 10000,
       type: 'success',
