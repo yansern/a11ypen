@@ -43,6 +43,14 @@ export default (pans, pan) => {
     const leftCount = pansCount(['html', 'css', 'js', 'console'])
     return {
       left: suffix(leftCount),
+      right: suffix(rightOffset(leftCount))
+    }
+  }
+
+  if (pan === 'a11y') {
+    const leftCount = pansCount(['html', 'css', 'js', 'console', 'output'])
+    return {
+      left: suffix(leftCount),
       right: 0
     }
   }
