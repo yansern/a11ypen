@@ -1,6 +1,7 @@
 <template>
   <header class="home-header">
     <div class="home-header-left home-header-block">
+      <img class="a11ypen-logo" src="/a11ypen-logo.png" title="a11ypen logo" />
       <el-dropdown
         @command="setBoilerplate"
         trigger="click"
