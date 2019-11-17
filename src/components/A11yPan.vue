@@ -8,7 +8,7 @@
         Accessibility
     </div>
     <div class="a11y-results">
-        <el-tabs tab-position="top">
+        <el-tabs v-model="activeTab" tab-position="top">
             <el-tab-pane name="violations" :label="labels.violations">
                 <a11y-results :items="results.violations" v-if="results.violations.length"></a11y-results>
                 <div class="a11y-hint" v-else>There are no violations.</div>
@@ -46,7 +46,8 @@ export default {
         violations: [],
         passes: [],
         incomplete: []
-      }
+      },
+      activeTab: 'violations'
     }
   },
   watch: {
@@ -145,10 +146,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setActivePan']),
-    checkA11y() {
-      console.log('TODO')
-    }
+    ...mapActions(['setActivePan'])
   },
   components: {
     'el-badge': Badge,
@@ -168,31 +166,34 @@ export default {
     background: #fff;
 }
 
-.el-tabs {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
+.a11y-results {
+  .el-tabs {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+  }
+
+  .el-tabs__header {
+      margin-bottom: 0;
+  }
+
+  .el-tabs__content {
+      flex-grow: 1;
+      height: 100%;
+      overflow-y: scroll;
+  }
+
+  .el-tabs__nav-wrap {
+      padding: 0 10px;
+  }
+
+  .el-tab-pane {
+      width: 100%;
+      height: 100%;
+  }
 }
 
-.el-tabs__header {
-    margin-bottom: 0;
-}
-
-.el-tabs__content {
-    flex-grow: 1;
-    height: 100%;
-    overflow-y: scroll;
-}
-
-.el-tabs__nav-wrap {
-    padding: 0 10px;
-}
-
-.el-tab-pane {
-    width: 100%;
-    height: 100%;
-}
 .a11y-hint {
     display: flex;
     align-items: center;

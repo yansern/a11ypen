@@ -88,29 +88,31 @@ export default {
 .el-tab-pane {
 
 }
-.el-collapse {
+.a11y-results.el-collapse {
     border-top: none;
 }
 
-.el-collapse-item {
-    border-bottom: 1px solid #EBEEF5;
-}
+.a11y-results {
+  .el-collapse-item {
+      border-bottom: 1px solid #EBEEF5;
+  }
 
-.el-collapse-item__header {
-    height: unset;
-    line-height: unset;
-    padding: 10px;
-    border-bottom: none;
-}
+  .el-collapse-item__header {
+      height: unset;
+      line-height: unset;
+      padding: 10px;
+      border-bottom: none;
+  }
 
-.el-collapse-item__wrap {
-    width: 100%;
-}
+  .el-collapse-item__wrap {
+      width: 100%;
+  }
 
-.el-collapse-item__content {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
+  .el-collapse-item__content {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+  }
 }
 
 .a11y-help {
@@ -154,7 +156,8 @@ export default {
     }
 
     .item-header-title {
-        margin-left: 5px;
+      margin-left: 5px;
+      line-height: 1.3;
     }
 
     .item-impact {
@@ -169,7 +172,7 @@ export default {
         text-transform: uppercase;
         font-size: 0.8em;
         position: relative;
-        top: 3px;
+        top: 2px;
         height: 15px;
     }
 }
