@@ -56,6 +56,12 @@
         @click="togglePan('output')">
         Output
       </span>
+      <span
+        class="pan-toggle"
+        :class="{visible: isVisible('a11y')}"
+        @click="togglePan('a11y')">
+          Accessibility
+      </span>
     </div>
     <div class="home-header-right home-header-block">
       <el-checkbox

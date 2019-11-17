@@ -52,7 +52,7 @@ const getFileNameByLang = {
 const boilerplates = {
   empty: async () => ({
     ...emptyPans(),
-    showPans: ['html', 'js', 'output']
+    showPans: ['html', 'css', 'output', 'a11y']
   })
 }
 function importAll(r) {
@@ -67,7 +67,7 @@ const store = new Vuex.Store({
   state: {
     ...emptyPans(),
     logs: [],
-    visiblePans: ['html', 'js', 'output'],
+    visiblePans: ['html', 'css', 'output', 'a11y'],
     activePan: 'js',
     autoRun: false,
     gistMeta: {},
