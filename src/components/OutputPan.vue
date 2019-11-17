@@ -24,7 +24,6 @@ import createIframe from '@/utils/iframe'
 import Event from '@/utils/event'
 import panPosition from '@/utils/pan-position'
 import getScripts from '@/utils/get-scripts'
-import proxyConsole from '!raw-loader!babel-loader?presets[]=babili&-babelrc!buble-loader!@/utils/proxy-console'
 import SvgIcon from './SvgIcon.vue'
 
 const sandboxAttributes = [
@@ -217,20 +216,7 @@ export default {
       await this.transform(false)
 
       const headStyle = createElement('style')(css)
-      const codePanRuntime = createElement('script')(`
-        window.process = window.process || { env: { NODE_ENV: 'development' } }
-        `) +
-        scripts
-          .map(script =>
-            createElement('script')('', {
-              src: `https://bundle.run/${script.module}${script.path}?name=${
-                script.name
-              }`
-            })
-          )
-          .join('\n') +
-        createElement('script')(proxyConsole)
-      const head = headStyle + codePanRuntime
+      const head = headStyle
 
       const body =
         html +

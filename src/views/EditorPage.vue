@@ -30,7 +30,6 @@
       <html-pan class="pan" v-show="isVisible('html')" />
       <css-pan class="pan" v-show="isVisible('css')" />
       <js-pan class="pan" v-show="isVisible('js')" />
-      <console-pan class="pan" v-show="isVisible('console')" />
       <output-pan class="pan" v-show="isVisible('output')" />
       <a11y-pan class="pan" v-show="isVisible('a11y')" />
     </div>
@@ -53,7 +52,6 @@ import HomeHeader from '@/components/HomeHeader.vue'
 import HTMLPan from '@/components/HTMLPan.vue'
 import JSPan from '@/components/JSPan.vue'
 import OutputPan from '@/components/OutputPan.vue'
-import ConsolePan from '@/components/ConsolePan.vue'
 import CSSPan from '@/components/CSSPan.vue'
 import A11yPan from '@/components/A11yPan.vue'
 import CompiledCodeDialog from '@/components/CompiledCodeDialog.vue'
@@ -193,7 +191,6 @@ export default {
     'html-pan': HTMLPan,
     'js-pan': JSPan,
     'output-pan': OutputPan,
-    'console-pan': ConsolePan,
     'css-pan': CSSPan,
     'a11y-pan': A11yPan,
     'home-header': HomeHeader,

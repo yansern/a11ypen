@@ -21,7 +21,7 @@ import Event from '@/utils/event'
 
 Vue.use(Vuex)
 
-const pans = ['html', 'css', 'js', 'console', 'output']
+const pans = ['html', 'css', 'js', 'output', 'a11y']
 const sortPans = ps => {
   return ps.sort((a, b) => {
     return pans.indexOf(a) > pans.indexOf(b)
