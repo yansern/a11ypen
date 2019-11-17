@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "a11ypen",
-  "productName": "A11yPen - Web Accessibility Code Playground",
+  "productName": "A11yPen.net",
   "description": "A11yPen - Web Accessibility Code Playground",
   "details": "A11yPen is an online code playground with accessibility testing for web developers who want to quickly tinker with web accessibility & share their results with others.",
   "main": "src/index.js",
