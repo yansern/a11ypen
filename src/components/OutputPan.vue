@@ -87,7 +87,6 @@ export default {
       'html',
       'visiblePans',
       'activePan',
-      'githubToken',
       'iframeStatus'
     ]),
     ...mapGetters([

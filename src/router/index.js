@@ -7,7 +7,6 @@ Vue.use(Router)
 
 const EditorPage = () => import(/* webpackChunkName: "editor-page" */ '@/views/EditorPage.vue')
 const NotFound = () => import(/* webpackChunkName: "not-found-page" */ '@/views/NotFound.vue')
-const GitHubSuccess = () => import(/* webpackChunkName: "ghlogin-result" */ '@/views/GitHubSuccess.vue')
 
 const router = new Router({
   mode: 'history',
@@ -26,11 +25,6 @@ const router = new Router({
       name: 'boilerplate',
       path: '/boilerplate/:boilerplate',
       component: EditorPage
-    },
-    {
-      name: 'github-success',
-      path: '/github_success',
-      component: GitHubSuccess
     },
     {
       path: '*',

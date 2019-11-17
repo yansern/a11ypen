@@ -15,7 +15,6 @@ import {
   loadStylus
 } from '@/utils/transformer'
 import progress from 'nprogress'
-import api from '@/utils/github-api'
 import req from 'reqjs'
 import Event from '@/utils/event'
 
@@ -71,9 +70,7 @@ const store = new Vuex.Store({
     visiblePans: ['html', 'js', 'output'],
     activePan: 'js',
     autoRun: false,
-    githubToken: localStorage.getItem('codepan:gh-token') || '',
     gistMeta: {},
-    userMeta: JSON.parse(localStorage.getItem('codepan:user-meta')) || {},
     editorStatus: 'saved',
     iframeStatus: null,
     transforming: false
@@ -106,15 +103,6 @@ const store = new Vuex.Store({
     },
     ACTIVE_PAN(state, pan) {
       state.activePan = pan
-    },
-    SET_GIST_META(state, meta) {
-      state.gistMeta = meta
-    },
-    SET_USER_META(state, meta) {
-      state.userMeta = meta
-    },
-    SET_GITHUB_TOKEN(state, token) {
-      state.githubToken = token
     },
     SET_EDITOR_STATUS(state, status) {
       state.editorStatus = status
