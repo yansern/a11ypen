@@ -11,6 +11,7 @@
     <div class="output-iframe" id="output-iframe">
       <div id="output-iframe-holder"></div>
     </div>
+    <pan-resizer pan="output" :enable="enableResizer" />
   </div>
 </template>
 
@@ -95,6 +96,9 @@ export default {
     ]),
     isActivePan() {
       return this.activePan === 'output'
+    },
+    enableResizer() {
+      return hasNextPan(this.visiblePans, 'output')
     }
   },
   mounted() {
