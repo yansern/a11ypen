@@ -33,7 +33,7 @@ const router = new Router({
   ]
 })
 
-ga(router, 'UA-54857209-13')
+ga(router, 'UA-152742959-1')
 
 router.beforeEach((to, from, next) => {
   progress.start()
