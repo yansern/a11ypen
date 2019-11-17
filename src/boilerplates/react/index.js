@@ -13,6 +13,6 @@ export default async () => {
       code: jsCode,
       transformer: 'babel'
     },
-    showPans: ['js', 'output']
+    showPans: ['js', 'output', 'a11y']
   }
 }

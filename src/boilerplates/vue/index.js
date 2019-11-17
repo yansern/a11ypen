@@ -13,6 +13,6 @@ export default async () => {
       code: htmlCode,
       transformer: 'html'
     },
-    showPans: ['html', 'js', 'output']
+    showPans: ['html', 'js', 'output', 'a11y']
   }
 }

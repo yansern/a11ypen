@@ -6,6 +6,6 @@ export default async () => {
       code: jsCode,
       transformer: 'svelte'
     },
-    showPans: ['js', 'output']
+    showPans: ['js', 'output', 'a11y']
   }
 }
