@@ -17,12 +17,7 @@
           <el-dropdown-item command="vue-jsx">Vue JSX</el-dropdown-item>
           <el-dropdown-item command="react">React</el-dropdown-item>
           <el-dropdown-item command="preact">Preact</el-dropdown-item>
-          <el-dropdown-item command="rxjs">RxJS</el-dropdown-item>
           <el-dropdown-item command="svelte">Svelte</el-dropdown-item>
-          <el-dropdown-item command="hyperapp">Hyperapp</el-dropdown-item>
-          <el-dropdown-item command="es-import">ES import</el-dropdown-item>
-          <el-dropdown-item command="rust">Rust</el-dropdown-item>
-          <el-dropdown-item command="pixi">Pixi</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <el-button
