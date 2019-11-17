@@ -26,6 +26,7 @@ import Event from '@/utils/event'
 import panPosition from '@/utils/pan-position'
 import getScripts from '@/utils/get-scripts'
 import SvgIcon from './SvgIcon.vue'
+import PanResizer from '@/components/PanResizer.vue'
 
 const sandboxAttributes = [
   'allow-modals',
@@ -301,7 +302,8 @@ export default {
     }
   },
   components: {
-    SvgIcon
+    SvgIcon,
+    PanResizer
   }
 }
 </script>
