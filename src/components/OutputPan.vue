@@ -152,6 +152,7 @@ export default {
         Event.$emit('refresh-editor')
       } else if (data.type === 'iframe-success') {
         this.setIframeStatus('success')
+        Event.$emit('iframe-success', this.iframe)
       }
     },
 
@@ -201,12 +202,12 @@ export default {
             window.Vue.config.productionTip = false;
           }
           console.clear();
-          document.addEventListener('DOMContentLoaded', __executeCodePan);
-          function __executeCodePan(){
-            window.parent.postMessage({ type: 'iframe-success' }, '*');
+          document.addEventListener('DOMContentLoaded', __executeA11yPen);
+          function __executeA11yPen(){
             let script = document.createElement('script');
             script.innerHTML = ${JSON.stringify(js)};
             document.body.appendChild(script);
+            window.parent.postMessage({ type: 'iframe-success' }, '*');
           };`
       } catch (err) {
         this.setIframeStatus('error')

@@ -14,12 +14,15 @@ class Iframe {
       html = obj
     } else {
       const { head = '', body = '' } = obj
-      html = `<!DOCTYPE html><html><head>${head}</head><body>${body}</body></html>`
+      html = `<!DOCTYPE html><html><head>${head}<script src="https://cdnjs.cloudflare.com/ajax/libs/axe-core/3.3.2/axe.min.js" type="text/javascript"></script></head><body>${body}</body></html>`
     }
 
     const iframe = this.createIframe()
 
-    this.$el.parentNode.replaceChild(iframe, this.$el)
+    if (this.$el.parentNode !== null) {
+      this.$el.parentNode.replaceChild(iframe, this.$el)
+    }
+
     iframe.contentWindow.document.open()
     iframe.contentWindow.document.write(html)
     iframe.contentWindow.document.close()
