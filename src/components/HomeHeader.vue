@@ -286,7 +286,7 @@
 
 <style lang="stylus" scoped>
 .home-header
-  height: 40px;
+  height: 40px
   border-bottom: 1px solid #bfbfbf
   background-color: white
   display: flex
@@ -294,6 +294,13 @@
   padding: 0 10px
   justify-content: space-between
 
+.a11ypen-logo
+  height: 27px
+  margin-right: 10px
+  margin-top: 1px
+  &.xxl {
+    height: 50px
+  }
 
 .about-dialog
   >>> .el-dialog__header
