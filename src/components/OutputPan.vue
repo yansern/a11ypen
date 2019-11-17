@@ -307,14 +307,17 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-$statusSize = 12px
+.output-pan {
+  overflow: hidden;
+}
 
-.output-pan
-  overflow: hidden
+.output-iframe {
+  width: 100%;
+  height: calc(100% - 40px);
+  background: #fff;
 
-.output-iframe
-  width: 100%
-  height: calc(100% - 40px)
-  &.disable-mouse-events
-    pointer-events: none
+  &.disable-mouse-events {
+    pointer-events: none;
+  }
+}
 </style>
