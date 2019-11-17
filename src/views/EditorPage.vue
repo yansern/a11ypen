@@ -41,7 +41,6 @@ import progress from 'nprogress'
 import { mapState, mapActions } from 'vuex'
 import notie from 'notie'
 import isElectron from 'is-electron'
-import axios from 'axios'
 import { inIframe } from '@/utils'
 import Event from '@/utils/event'
 import HomeHeader from '@/components/HomeHeader.vue'
@@ -125,26 +124,12 @@ export default {
       window.parent.postMessage({ type: 'a11ypan-ready' }, '*')
     }
 
-    window.addEventListener('storage', this.handleStorageChanged)
-
     window.addEventListener('beforeunload', e => {
       if (!inIframe && !isElectron() && this.editorStatus !== 'saved') {
         e.returnValue = false
         return false
       }
     })
-
-    // Since in prevous versions we didn't fetch userMeta after login
-    // We need to force user to re-login in order to get that data
-    if (this.$store.state.githubToken && Object.keys(this.$store.state.userMeta).length === 0) {
-      this.$store.dispatch('setGitHubToken', null)
-        .then(() => {
-          notie.alert({
-            type: 'warning',
-            text: `You need to login again to use the new version!`
-          })
-        })
-    }
 
     Event.$on('show-compiled-code', type => {
       this.showCompiledCode[type] = true
@@ -156,32 +141,9 @@ export default {
     ...mapActions(['setBoilerplate', 'setGist', 'showPans', 'setAutoRun']),
     isVisible(pan) {
       return this.visiblePans.indexOf(pan) !== -1
-    },
-    handleStorageChanged(e) {
-      if (e.key === 'codepan:gh-token' && e.newValue) {
-        this.$store.dispatch('setGitHubToken', e.newValue)
-        if (inIframe) {
-          notie.confirm({
-            text: 'Success, reload this iframe?',
-            submitCallback() {
-              window.location.reload()
-            }
-          })
-        } else {
-          notie.alert({
-            type: 'success',
-            text: 'Successfully logged in with GitHub!'
-          })
-        }
-      }
-    },
-    async getCodeFund() {
-      const res = await axios.get('https://codefund.io/properties/241/funder.html')
-      this.$refs.codefund.innerHTML = res.data
     }
   },
   beforeDestroy() {
-    window.removeEventListener('storage', this.handleStorageChanged)
   },
   components: {
     'html-pan': HTMLPan,

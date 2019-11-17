@@ -281,14 +281,6 @@ const store = new Vuex.Store({
     }
   },
   getters: {
-    isLoggedIn({ githubToken }) {
-      return Boolean(githubToken)
-    },
-    canUpdateGist({ gistMeta, userMeta }) {
-      return gistMeta && userMeta &&
-        gistMeta.owner &&
-        gistMeta.owner.id === userMeta.id
-    }
   }
 })
 
