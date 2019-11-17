@@ -1,7 +1,7 @@
 <template>
   <header class="home-header">
     <div class="home-header-left home-header-block">
-      <img class="a11ypen-logo" src="/a11ypen-logo.png" title="a11ypen logo" />
+      <a href="/" title="A11yPen Home"><img class="a11ypen-logo" src="/a11ypen-logo.png" title="a11ypen logo" /></a>
       <el-dropdown
         @command="setBoilerplate"
         trigger="click"
@@ -152,6 +152,7 @@
     <el-dialog
       :visible.sync="showAboutDialog"
       class="about-dialog"
+      :modal="false"
       width="500px">
       <template slot="title">
         <img class="a11ypen-logo xxl" src="/a11ypen-logo.png" title="a11ypen logo" />
@@ -292,11 +293,13 @@ import { inIframe } from '@/utils'
   align-items: center
   padding: 0 10px
   justify-content: space-between
+  box-shadow: 0 0 7px #ccc;
+  z-index: 2010;
+  position: relative;
 
 .a11ypen-logo
   height: 27px
   margin-right: 10px
-  margin-top: 1px
   &.xxl {
     height: 50px
   }
@@ -321,6 +324,7 @@ import { inIframe } from '@/utils'
 .home-header-left
   display: flex
   justify-content: flex-start
+  height: 28px;
   .home-header-left-item
     margin-right: 10px
 
