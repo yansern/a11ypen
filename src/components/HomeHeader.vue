@@ -52,15 +52,6 @@
       </span>
       <span
         class="pan-toggle"
-        :class="{visible: isVisible('console')}"
-        @click="togglePan('console')">
-        <el-badge
-          :is-dot="totalLogsCount > 0">
-          Console
-        </el-badge>
-      </span>
-      <span
-        class="pan-toggle"
         :class="{visible: isVisible('output')}"
         @click="togglePan('output')">
         Output
