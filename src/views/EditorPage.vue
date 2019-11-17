@@ -33,10 +33,6 @@
       <output-pan class="pan" v-show="isVisible('output')" />
       <a11y-pan class="pan" v-show="isVisible('a11y')" />
     </div>
-
-    <div ref="codefund">
-      <div class="codefund-placeholder">Loading CodeFund...</div>
-    </div>
   </div>
 </template>
 
@@ -208,7 +204,7 @@ export default {
 
 <style lang="stylus" scoped>
 .pans
-  height: calc(100% - 40px - 40px)
+  height: calc(100% - 40px)
   display: flex
   position: relative
 
@@ -262,11 +258,4 @@ export default {
   line-height: 40px !important
   z-index: 9999 !important
   padding: 0 10px !important
-
-.codefund-placeholder
-  height: 40px
-  line-height 40px
-  border-top: 1px solid #ccc
-  text-align: center
-  padding: 0 10px
 </style>
